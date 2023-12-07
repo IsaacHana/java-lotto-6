@@ -19,7 +19,14 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public LottoNumber of(int number) {
+    public static LottoNumber of(int number) {
+        validate(number);
         return lottoNumberCache.get(number);
+    }
+
+    private static void validate(int number) {
+        if(number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 숫자여야 합니다.");
+        }
     }
 }
