@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.common.Rule;
+
 import java.util.List;
 
 public class Lotto {
@@ -11,8 +13,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != Rule.MAX_SIZE.getValue()) {
+            throw new IllegalArgumentException("[ERROR 로또는 6자리의 번호여야 합니다.]");
+        }
+
+        if (numbers.stream().distinct().count() != Rule.MAX_SIZE.getValue()) {
+            throw new IllegalArgumentException("[ERROR 로또는 중복되지 않은 6자리의 번호여야 합니다.]");
         }
     }
 
