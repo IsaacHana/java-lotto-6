@@ -24,8 +24,16 @@ public class LottoNumber {
         return lottoNumberCache.get(number);
     }
 
+    public static LottoNumber of(String number) {
+        try {
+            return of(Integer.parseInt(number));
+        } catch (NumberFormatException nfe) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 숫자입니다.");
+        }
+    }
+
     private static void validate(int number) {
-        if(number < 1 || number > 45) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 숫자여야 합니다.");
         }
     }
